@@ -9,4 +9,4 @@ Compile the program
 javac -classpath "./lib/jsoup-1.11.2.jar" com/ellen/findemailaddresses/FindEmailAddresses.java
 
 Run the program
- java -classpath ".:./lib/jsoup-1.11.2.jar" com/ellen/findemailaddresses/FindEmailAddresses url
+ java -classpath ".:./lib/jsoup-1.11.2.jar" com/ellen/findemailaddresses/FindEmailAddresses domain
