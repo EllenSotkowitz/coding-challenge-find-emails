@@ -1,7 +1,5 @@
 package com.ellen.findemailaddresses;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,8 +14,8 @@ import java.util.regex.Pattern;
 
 public class FindEmailAddresses {
 
-    private static HashSet<String> urls = new HashSet();
-    private static HashSet<String> emails = new HashSet();
+    private static HashSet<String> urls = new HashSet<>();
+    private static HashSet<String> emails = new HashSet<>();
 
     public static void main(String[] args) throws Exception {
         String url = "http://" + args[0];
@@ -29,7 +27,7 @@ public class FindEmailAddresses {
         }
     }
 
-    public static void findEmails(String url, Document doc) {
+    private static void findEmails(String url, Document doc) {
         Elements elements = doc.getAllElements();
         for (Element element : elements) {
             String elementUrl = "";
@@ -44,8 +42,6 @@ public class FindEmailAddresses {
                     String text = elementDoc.text();
                     emails.addAll(find(text));
                 }
-            } catch (MalformedURLException e) {
-                System.out.println("Error for element url " + elementUrl + "\n" + e.getMessage());
             } catch (IOException e) {
                 System.out.println("Error for element url " + elementUrl + "\n" + e.getMessage());
             }
@@ -60,8 +56,8 @@ public class FindEmailAddresses {
         }
     }
 
-    public static Set find(String inputString) {
-        HashSet result = new HashSet<String>();
+    private static Set<String> find(String inputString) {
+        HashSet<String> result = new HashSet<>();
         Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9]+").matcher(inputString);
         while (m.find()) {
             String email = m.group();
